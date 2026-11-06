@@ -1,1 +1,29 @@
 
+name: Temporary Linux Machine
+
+on:
+  workflow_dispatch:
+
+jobs:
+  server:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Check server resources
+        run: |
+          echo "=== CPU ==="
+          nproc
+          echo "=== RAM ==="
+          free -h
+          echo "=== STORAGE ==="
+          df -h /
+          echo "=== SYSTEM ==="
+          uname -a
+          echo "=== INTERNET ==="
+          curl -I https://github.com
+
+      - name: Run your commands
+        run: |
+          echo "Your Linux machine is ready!"
+
